@@ -34,11 +34,11 @@ export default function About() {
       <div className="container mx-auto px-6 md:px-12">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="font-montserrat text-3xl md:text-4xl font-bold mb-4" style={{ color: colors.primary }}>
-            O Fim da Burocracia Fria
+            Olhando Sempre à Frente
           </h2>
           <div className="w-20 h-1 mx-auto mb-6 rounded-full" style={{ backgroundColor: colors.accent }}></div>
           <p className="text-lg text-gray-600 leading-relaxed">
-            A OPEX fala como um Mentor Confiável. Evitamos jargões e focamos em orientar você para o futuro, e não apenas nas obrigações do passado. A estrutura sólida encontra o acolhimento flexível.
+            Na OPEX focamos em orientar você para o futuro, e não apenas nas obrigações do passado. Atuando sempre com uma estrutura sólida e qualidade na entrega dos resultados.
           </p>
         </div>
 
