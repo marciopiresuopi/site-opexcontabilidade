@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-lato: 'Lato', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+
+  --color-brand-primary: #003366;
+  --color-brand-secondary: #66BB6A;
+  --color-brand-accent: #B8860B;
+  --color-brand-text: #001223;
+  --color-brand-light: #F8FAFC;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-lato);
+  color: var(--color-brand-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat);
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, #001223 0%, #003366 100%);
+}
