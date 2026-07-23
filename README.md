@@ -37,11 +37,30 @@ Passos únicos de configuração, depois do primeiro push:
 
 1. No GitHub, vá em **Settings → Pages**.
 2. Em "Build and deployment", selecione **Source: GitHub Actions**.
-3. Pronto — a cada alteração enviada para `main`, o site é reconstruído e publicado automaticamente.
+3. Em **Custom domain**, digite `www.opexcontabilidade.com.br` e salve (o GitHub cria/mantém o arquivo `public/CNAME`, que já está no projeto).
+4. Depois que o DNS propagar (veja abaixo), marque **Enforce HTTPS**.
 
-O site ficará disponível em `https://<seu-usuario>.github.io/opex-contabilidade/`.
+## Domínio próprio (www.opexcontabilidade.com.br) via Cloudflare
 
-> Se o repositório tiver outro nome, ajuste a linha `base` em `vite.config.ts` para `/nome-do-repositorio/`. Se usar um domínio próprio (ex: opexcontabilidade.com.br), troque `base` para `/` e configure o domínio em Settings → Pages → Custom domain.
+O arquivo `public/CNAME` já está configurado com `www.opexcontabilidade.com.br`, e o `vite.config.ts` já usa `base: '/'` (necessário para domínio próprio).
+
+Na Cloudflare, na zona `opexcontabilidade.com.br`, em **DNS → Records**, adicione:
+
+| Tipo  | Nome | Conteúdo                     | Proxy status |
+|-------|------|-------------------------------|--------------|
+| CNAME | www  | `<seu-usuario>.github.io`     | DNS only (nuvem cinza) |
+
+> Deixe como **DNS only** (nuvem cinza, não laranja) no início. O GitHub Pages emite o certificado SSL validando o domínio diretamente — se o proxy da Cloudflare (laranja) estiver ativo antes disso, a emissão do certificado pode falhar. Depois que o HTTPS estiver ativo e funcionando no GitHub (Settings → Pages mostrando o certificado emitido), você pode ativar o proxy da Cloudflare (nuvem laranja) se quiser os benefícios de CDN/proteção — nesse caso, ajuste **SSL/TLS → Overview** para **Full** (nunca "Flexible", isso causa loop de redirecionamento com GitHub Pages).
+
+Se também quiser que `opexcontabilidade.com.br` (sem `www`) funcione, redirecionando para o `www`:
+
+1. Adicione registros **A** para a raiz (`@`) apontando para os IPs do GitHub Pages:
+   `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+2. Em **Rules → Redirect Rules** na Cloudflare, crie uma regra redirecionando `opexcontabilidade.com.br/*` para `https://www.opexcontabilidade.com.br/$1` (isso exige que o registro da raiz esteja com proxy ativado/nuvem laranja).
+
+Propagação de DNS costuma levar de alguns minutos a algumas horas.
+
+O site ficará disponível em `https://www.opexcontabilidade.com.br`.
 
 ## Build de produção manual
 
