@@ -1,4 +1,5 @@
 import { colors } from '../data/colors';
+import { whatsappLink } from '../data/whatsapp';
 
 export default function CTA() {
   return (
@@ -16,7 +17,9 @@ export default function CTA() {
         </p>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
           <a
-            href="#contato"
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-10 py-4 rounded-md font-bold text-[#003366] text-lg transition-transform transform hover:scale-105 shadow-2xl"
             style={{ backgroundColor: colors.secondary }}
           >

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { colors } from '../data/colors';
+import { whatsappLink } from '../data/whatsapp';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,7 +39,9 @@ export default function Header() {
           <a href="#solucoes" className={`font-bold text-sm hover:text-[#66BB6A] transition-colors ${isScrolled ? 'text-[#001223]' : 'text-white'}`}>Soluções</a>
           <a href="#bpo" className={`font-bold text-sm hover:text-[#66BB6A] transition-colors ${isScrolled ? 'text-[#001223]' : 'text-white'}`}>BPO Financeiro</a>
           <a
-            href="#contato"
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-6 py-2.5 rounded-full font-bold text-white transition-all transform hover:scale-105 shadow-lg flex items-center gap-2"
             style={{ backgroundColor: colors.secondary }}
           >
@@ -63,7 +66,9 @@ export default function Header() {
           <a href="#solucoes" className="text-lg font-bold text-[#001223]" onClick={() => setMobileMenuOpen(false)}>Soluções</a>
           <a href="#bpo" className="text-lg font-bold text-[#001223]" onClick={() => setMobileMenuOpen(false)}>BPO Financeiro</a>
           <a
-            href="#contato"
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-4 px-6 py-3 rounded-md font-bold text-white text-center transition-all"
             style={{ backgroundColor: colors.secondary }}
             onClick={() => setMobileMenuOpen(false)}
